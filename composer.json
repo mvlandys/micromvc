@@ -1,5 +1,6 @@
 {
     "minimum-stability": "dev",
+    "version":      "1.0.0",
     "name":         "matheos/micromvc",
     "description":  "small php micro framework",
     "type":         "project",
@@ -21,11 +22,6 @@
         "psr-4": {
             "Matheos\\App\\": [ "App/controllers/", "App/models/", "App/helpers/" ],
             "Matheos\\MicroMVC\\": "MicroMVC/"
-        }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0"
         }
     }
 }
