@@ -1,0 +1,71 @@
+Options +FollowSymLinks
+IndexIgnore */*
+
+# Turn on the RewriteEngine
+RewriteEngine On
+
+#301 Redirects
+RewriteRule ^images(.*)$ /App/assets/images$1 [L,R=301]
+RewriteRule ^audio(.*)$ /App/assets/audio$1 [L,R=301]
+RewriteRule ^video(.*)$ /App/assets/video$1 [L,R=301]
+RewriteRule ^fonts(.*)$ /App/assets/fonts$1 [L,R=301]
+RewriteRule ^html5(.*)$ /App/assets/html5$1 [L,R=301]
+RewriteRule ^min(.*)$ /vendor/mrclay/minify/min$1 [L,R=301]
+
+RewriteRule config.json index.php [F,L]
+
+#301 Redirect HTML5 elements
+RewriteRule ^favicon\.ico$ /App/assets/html5/favicon.ico [L]
+
+#  Rules
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+
+# Index Rule
+RewriteRule ^(.*)$ index.php [NC,L]
+
+# Turn on Expires and set default to 0
+ExpiresActive On
+ExpiresDefault A0
+
+# Set up caching on media files for 1 year (forever?)
+<FilesMatch "\.(flv|ico|pdf|avi|mov|ppt|doc|mp3|wmv|wav)$">
+    ExpiresDefault A29030400
+    Header append Cache-Control "public"
+</FilesMatch>
+
+# Set up caching on media files for 1 week
+<FilesMatch "\.(gif|jpg|jpeg|png|swf)$">
+    ExpiresDefault A604800
+    Header append Cache-Control "public"
+</FilesMatch>
+
+# Set up 2 Hour caching on commonly updated files
+<FilesMatch "\.(xml|txt|html|js|css)$">
+    ExpiresDefault A7200
+    Header append Cache-Control "proxy-revalidate"
+</FilesMatch>
+
+# Force no caching for dynamic files
+<FilesMatch "\.(php|cgi|pl|htm)$">
+    ExpiresActive Off
+    Header set Cache-Control "private, no-cache, no-store, proxy-revalidate, no-transform"
+    Header set Pragma "no-cache"
+</FilesMatch>
+
+# compress text, html, javascript, css, xml:
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+
+#compress fonts
+Addtype font/opentype .otf
+Addtype font/truetype .ttf
+AddOutputFilterByType DEFLATE font/opentype font/truetype

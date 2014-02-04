@@ -1,0 +1,17 @@
+{
+    "DB": {
+        "enabled"   : "true",
+        "host"      : "localhost",
+        "database"  : "gcrm",
+        "username"  : "root",
+        "password"  : "root"
+    },
+
+    "Core": {
+        "routing"   : "false",
+        "strictHost": "false",
+        "hostname"  : "localhost",
+        "rootFolder": "/Users/matheos/Dropbox/Sites/MicroMVC_Framework",
+        "logErrors" : "false"
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "name":         "matheos/micromvc",
+    "description":  "small php micro framework",
+    "version":      "1.1",
+    "type":         "project",
+    "license":      "Apache-2.0",
+    "authors": [
+        {
+            "name":     "Mathew Vlandys",
+            "email":    "mvlandys@gmail.com",
+            "homepage": "http://www.github.com/mvlandys",
+            "role":     "Developer"
+        }
+    ],
+    "require": {
+        "php":                  ">=5.3.0",
+        "vrana/notorm":         "dev-master#656423f4a55e6f9f5084b8b6aada54cc829cce1b",
+        "mrclay/minify":        "dev-cite_is_inline"
+    },
+    "autoload": {
+        "psr-4": {
+            "Matheos\\App\\": [ "App/controllers/", "App/models/", "App/helpers/" ],
+            "Matheos\\MicroMVC\\": "MicroMVC/"
+        }
+    }
+}
