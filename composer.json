@@ -1,6 +1,5 @@
 {
     "minimum-stability": "dev",
-    "version":      "1.0.0",
     "name":         "matheos/micromvc",
     "description":  "small php micro framework",
     "type":         "project",
