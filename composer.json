@@ -23,5 +23,10 @@
             "Matheos\\App\\": [ "App/controllers/", "App/models/", "App/helpers/" ],
             "Matheos\\MicroMVC\\": "MicroMVC/"
         }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.0-dev"
+        }
     }
 }
