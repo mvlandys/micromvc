@@ -33,5 +33,10 @@
             "type": "vcs",
             "url":  "https://github.com/mvlandys/notorm.git"
         }
-    ]
+    ],
+    "config":{
+        "github-oauth":{
+            "github.com":"014ba714d1e94278a172eb71aa85bfe2d2ad28a8"
+        }
+    }
 }
