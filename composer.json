@@ -14,7 +14,7 @@
     ],
     "require": {
         "php":                  ">=5.3.0",
-        "vrana/notorm":         "dev-master#656423f4a55e6f9f5084b8b6aada54cc829cce1b",
+        "vrana/notorm":         "dev-master",
         "mrclay/minify":        "dev-cite_is_inline"
     },
     "autoload": {
@@ -27,5 +27,11 @@
         "branch-alias": {
             "dev-master": "1.0-dev"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "https://github.com/mvlandys/notorm.git"
+        }
+    ]
 }
