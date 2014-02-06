@@ -1,48 +1,66 @@
 <?php
-    namespace Matheos\MicroMVC;
+/**
+ * Controller Class
+ *
+ * The Core Controller Class
+ *
+ * @package    MicroMVC
+ * @author     Mathew Vlandys <mvlandys@gmail.com>
+ * @license    https://www.apache.org/licenses/LICENSE-2.0.html  Apache License v2.0
+ *
+ */
 
-    class Controller {
-        protected $view, $model;
+namespace Matheos\MicroMVC;
 
-        function __construct() {
-            $this->view  = new \Matheos\MicroMVC\View($this->className());
+class Controller
+{
+    protected $view;
+    protected $model;
 
-            $modelFile  = $this->className() . "Model";
-            $modelClass = "\\Matheos\\App\\" . $modelFile;
+    public function __construct()
+    {
+        $this->view  = new \Matheos\MicroMVC\View($this->className());
 
-            if (file_exists(dirname(__FILE__) . "/../App/models/{$modelFile}.php")) {
-                $this->model = new $modelClass;
-            }
-        }
+        $modelFile  = $this->className() . "Model";
+        $modelClass = "\\Matheos\\App\\" . $modelFile;
 
-        public function renderSite( $views=null ) {
-            $MainController = new \Matheos\App\Main();
-            $MainController->renderHtml( $this->className() );
-            $MainController->renderHeader();
-
-            foreach ($views as $view) {
-                $view->renderView();
-            }
-
-            $MainController->renderFooter();
-        }
-
-        public function className() {
-            $class = explode('\\', get_class($this));
-            return end($class);
-        }
-
-        public function debugArray($arr) {
-            echo "<pre>";
-            print_r($arr);
-            echo "</pre>";
-        }
-
-        public function redirect($url) {
-            $AppConfig = \Matheos\MicroMVC\AppConfig::getInstance()->config;
-            $Hostname  = $AppConfig->Core->hostname;
-
-            header("Location: http://" . $Hostname . $url);
-            exit(1);
+        if (file_exists(dirname(__FILE__) . "/../App/models/{$modelFile}.php")) {
+            $this->model = new $modelClass;
         }
     }
+
+    public function renderSite($views = null)
+    {
+        $MainController = new \Matheos\App\Main();
+        $MainController->renderHtml($this->className());
+        $MainController->renderHeader();
+
+        foreach ($views as $view) {
+            $view->renderView();
+        }
+
+        $MainController->renderFooter();
+    }
+
+    public function className()
+    {
+        $class = explode('\\', get_class($this));
+        return end($class);
+    }
+
+    public function debugArray($arr)
+    {
+        echo "<pre>";
+        print_r($arr);
+        echo "</pre>";
+    }
+
+    public function redirect($url)
+    {
+        $AppConfig = \Matheos\MicroMVC\AppConfig::getInstance()->config;
+        $Hostname  = $AppConfig->Core->hostname;
+
+        header("Location: http://" . $Hostname . $url);
+        exit(1);
+    }
+}
