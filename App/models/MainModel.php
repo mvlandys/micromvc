@@ -43,12 +43,28 @@
 
             foreach($bower->dependencies as $lib=>$ver) {
                 $path = $appCfg->Core->rootFolder . "/App/lib/vendor/" . $lib . "/";
+                $file = (file_exists($path . "bower.json")) ? "bower.json" : ".bower.json";
 
-                if (! file_exists($path . "bower.json")) {
+                if (! file_exists($path . $file)) {
                     continue;
                 }
 
-                $lib_bower = json_decode( file_get_contents($path . "bower.json") );
+                $lib_bower = json_decode( file_get_contents($path . $file) );
+
+                if (! isset($lib_bower->main)) {
+                    $css_files = glob($path . "*.css");
+                    $js_files  = glob($path . "*.js");
+
+                    foreach($css_files as $css_file) {
+                        $css[] = $lib . "/" . basename($css_file);
+                    }
+
+                    foreach($js_files as $js_file) {
+                        $js[] = $lib . "/" . basename($js_file);
+                    }
+                    continue;
+                }
+
                 $files     = (is_array($lib_bower->main)) ? $lib_bower->main : array($lib_bower->main);
 
                 foreach($files as $file) {
