@@ -5,7 +5,7 @@ class Model
 {
     private $dbORM;
 
-    private function __get($var)
+    public function __get($var)
     {
         if ($var == "db") {
             if (!isset($this->dbORM)) {
