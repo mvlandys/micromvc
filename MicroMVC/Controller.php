@@ -12,6 +12,8 @@
 
 namespace Matheos\MicroMVC;
 
+use \Matheos\App\Main;
+
 class Controller
 {
     protected $view;
@@ -19,7 +21,7 @@ class Controller
 
     public function __construct()
     {
-        $this->view  = new \Matheos\MicroMVC\View($this->className());
+        $this->view  = new View($this->className());
 
         $modelFile  = $this->className() . "Model";
         $modelClass = "\\Matheos\\App\\" . $modelFile;
@@ -31,7 +33,7 @@ class Controller
 
     public function renderSite($views = null)
     {
-        $MainController = new \Matheos\App\Main();
+        $MainController = new Main();
         $MainController->renderHtml($this->className());
         $MainController->renderHeader();
 
@@ -57,7 +59,7 @@ class Controller
 
     public function redirect($url)
     {
-        $AppConfig = \Matheos\MicroMVC\AppConfig::getInstance()->config;
+        $AppConfig = AppConfig::getInstance()->config;
         $Hostname  = $AppConfig->Core->hostname;
 
         header("Location: http://" . $Hostname . $url);

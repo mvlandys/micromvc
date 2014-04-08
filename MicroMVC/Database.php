@@ -29,7 +29,7 @@ class Database
 
     public static function init()
     {
-        $AppConfig = \Matheos\MicroMVC\AppConfig::getInstance();
+        $AppConfig = AppConfig::getInstance();
         $DBConfig  = $AppConfig->config->DB;
 
         $Server     = $DBConfig->host;
@@ -73,5 +73,7 @@ class Database
         } catch (\Exception $e) {
             echo $e->getMessage();
         }
+
+        return null;
     }
 }
