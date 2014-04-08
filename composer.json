@@ -15,7 +15,7 @@
     "require": {
         "php":                  ">=5.3.0",
         "vrana/notorm":         "dev-master",
-        "mrclay/minify":        "dev-cite_is_inline"
+        "mrclay/minify":        "dev-master"
     },
     "autoload": {
         "psr-4": {
