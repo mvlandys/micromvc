@@ -1,9 +1,13 @@
 <?php
     namespace Matheos\App;
 
-    class Bcrypt {
+    class Bcrypt
+    {
         private $rounds;
-        public function __construct($rounds = 12) {
+        private $randomState;
+
+        public function __construct($rounds = 12)
+        {
             if(CRYPT_BLOWFISH != 1) {
                 throw new Exception("bcrypt not supported in this installation. See http://php.net/crypt");
             }
@@ -11,7 +15,8 @@
             $this->rounds = $rounds;
         }
 
-        public function hash($input) {
+        public function hash($input)
+        {
             $hash = crypt($input, $this->getSalt());
 
             if(strlen($hash) > 13)
@@ -20,13 +25,15 @@
             return false;
         }
 
-        public function verify($input, $existingHash) {
+        public function verify($input, $existingHash)
+        {
             $hash = crypt($input, $existingHash);
 
             return $hash === $existingHash;
         }
 
-        private function getSalt() {
+        private function getSalt()
+        {
             $salt = sprintf('$2a$%02d$', $this->rounds);
 
             $bytes = $this->getRandomBytes(16);
@@ -36,8 +43,8 @@
             return $salt;
         }
 
-        private $randomState;
-        private function getRandomBytes($count) {
+        private function getRandomBytes($count)
+        {
             $bytes = '';
 
             if(function_exists('openssl_random_pseudo_bytes') &&
@@ -77,7 +84,8 @@
             return $bytes;
         }
 
-        private function encodeBytes($input) {
+        private function encodeBytes($input)
+        {
             // The following is code from the PHP Password Hashing Framework
             $itoa64 = './ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
