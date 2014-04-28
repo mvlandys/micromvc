@@ -8,13 +8,7 @@
         $(imageArray).preload();
     });
 
-    function cBox( url ) {
-        $.colorbox({
-            href: "http://" + window.location.hostname + url
-        });
-    }
-
-    function cBox_Close( refresh ) {
+    function cBox_Close(refresh) {
         if (refresh) {
             $.colorbox({
                 onCleanup: function() {
