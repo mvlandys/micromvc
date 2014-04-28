@@ -1,34 +1,41 @@
 <?php
-	namespace Matheos\App;
+namespace Matheos\App;
 
-    use Matheos\MicroMVC\Controller;
+use Matheos\MicroMVC\Controller;
 
-	class Alert extends Controller
+class Alert extends Controller
+{
+    /*
+     *  Renders an Alert-View fit for a colorbox popup
+     *
+     *  @param string $alert
+     *  @param string $type
+     *  @param int $refresh
+     */
+    public function cBox_Alert($alert, $type, $refresh = null)
     {
-        /*
-         *
-         */
-        public function cBox_Alert($Alert, $Type, $Refresh = null)
-        {
-            $viewData = array(
-                "Alert"   => $Alert,
-                "Type"    => $Type,
-                "Refresh" => $Refresh
-            );
+        $viewData = array(
+            "Alert"   => $alert,
+            "Type"    => $type,
+            "Refresh" => $refresh
+        );
 
-            $this->view->renderView("cBox_alert.php", $viewData);
-        }
+        $this->view->renderView("cBox_alert.php", $viewData);
+    }
 
-        /*
-         *
-         */
-        public function page_Alert($Alert, $Type)
-        {
-            $viewData = array(
-                "Alert" => $Alert,
-                "Type"  => $Type
-            );
+    /*
+     *  Renders an Alert-View
+     *
+     *  @param string $alert
+     *  @param string $type
+     */
+    public function page_Alert($alert, $type)
+    {
+        $viewData = array(
+            "Alert" => $alert,
+            "Type"  => $type
+        );
 
-            $this->view->renderView("page_alert.php", $viewData);
-        }
-	}
+        $this->view->renderView("page_alert.php", $viewData);
+    }
+}

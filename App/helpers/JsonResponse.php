@@ -1,30 +1,35 @@
 <?php
-    namespace Matheos\App;
+namespace Matheos\App;
 
-    class JsonResponse
+class JsonResponse
+{
+    private $error;
+    private $errorMsg;
+    private $data;
+
+    public function __construct()
     {
-        private $error, $errorMsg, $data;
-
-        public function set_Data($data)
-        {
-            $this->data = $data;
-        }
-
-        public function set_Error($error)
-        {
-            $this->error = 1;
-            $this->errorMsg = $error;
-        }
-
-        public function send()
-        {
-            if ($this->error == 1) {
-                echo json_encode( array(
-                    "error"     => $this->error,
-                    "error_msg" => $this->errorMsg
-                ));
-            } else {
-                echo json_encode( array($this->data) );
-            }
-        }
+        $this->error    = "0";
+        $this->errorMsg = "";
     }
+
+    public function setData($data)
+    {
+        $this->data = $data;
+    }
+
+    public function setError($error)
+    {
+        $this->error    = 1;
+        $this->errorMsg = $error;
+    }
+
+    public function send()
+    {
+        echo json_encode(array(
+            "error"     =>  $this->error,
+            "error_msg" =>  $this->errorMsg,
+            "data"      =>  $this->data
+        ));
+    }
+}
