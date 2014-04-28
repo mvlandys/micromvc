@@ -13,5 +13,13 @@
         "hostname"  : "localhost",
         "rootFolder": "/var/www/html/MicroMVC",
         "logErrors" : "false"
+    },
+
+    "Bower": {
+        "sample_lib": {
+            "override" : "false",
+            "css"      : "template1/styles.css",
+            "js"       : "template1/functions.js"
+        }
     }
 }
