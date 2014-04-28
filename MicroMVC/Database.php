@@ -54,19 +54,25 @@ class Database
         return static::$instance;
     }
 
-    public function pdoQuery($SQL, $Data)
+    /*
+     *  Perform a PDO query
+     *
+     *  @param string $sql
+     *  @param mixed array $data
+     */
+    public function pdoQuery($sql, $data)
     {
         try {
-            $Query = self::$pdo->prepare($SQL);
+            $query = self::$pdo->prepare($sql);
 
-            if (!empty($Data)) {
-                $Query->execute($Data);
+            if (!empty($data)) {
+                $query->execute($data);
             } else {
-                $Query->execute();
+                $query->execute();
             }
 
-            if ($Query->columnCount() > 0) {
-                return $Query->fetchAll(\PDO::FETCH_ASSOC);
+            if ($query->columnCount() > 0) {
+                return $query->fetchAll(\PDO::FETCH_ASSOC);
             } else {
                 return null;
             }
