@@ -1,7 +1,7 @@
 {
     "name":     "micromvc",
     "dependencies": {
-        "jquery"    : "2.1.0",
-        "bootstrap" : "3.1.0"
+        "jquery"    : "latest",
+        "bootstrap" : "latest"
     }
 }

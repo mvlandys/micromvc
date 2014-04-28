@@ -43,30 +43,47 @@
 
             foreach($bower->dependencies as $lib=>$ver) {
                 $path = $appCfg->Core->rootFolder . "/App/lib/vendor/" . $lib . "/";
-                $file = (file_exists($path . "bower.json")) ? "bower.json" : ".bower.json";
 
+                if (!empty($appCfg->Bower->$lib)) {
+                    if (!empty($appCfg->Bower->$lib->css)) {
+                        if (is_array($appCfg->Bower->$lib->css)) {
+                            foreach($appCfg->Bower->$lib->css as $file) {
+                                $css[] = $lib . "/" . $file;
+                            }
+                        } else {
+                            $css[] = $lib . "/" . $appCfg->Bower->$lib->css;
+                        }
+                    }
+
+                    if (!empty($appCfg->Bower->$lib->js)) {
+                        if (is_array($appCfg->Bower->$lib->js)) {
+                            foreach($appCfg->Bower->$lib->js as $file) {
+                                $js[] = $lib . "/" . $file;
+                            }
+                        } else {
+                            $js[] = $lib . "/" . $appCfg->Bower->$lib->js;
+                        }
+                    }
+
+                    if ($appCfg->Bower->$lib->override == true) {
+                        continue;
+                    }
+                }
+
+                /*  Read Bower JSON file */
+                $file = (file_exists($path . "bower.json")) ? "bower.json" : ".bower.json";
                 if (! file_exists($path . $file)) {
                     continue;
                 }
 
+                /* Read "main" property */
                 $lib_bower = json_decode( file_get_contents($path . $file) );
-
                 if (! isset($lib_bower->main)) {
-                    $css_files = glob($path . "*.css");
-                    $js_files  = glob($path . "*.js");
-
-                    foreach($css_files as $css_file) {
-                        $css[] = $lib . "/" . basename($css_file);
-                    }
-
-                    foreach($js_files as $js_file) {
-                        $js[] = $lib . "/" . basename($js_file);
-                    }
                     continue;
                 }
 
-                $files     = (is_array($lib_bower->main)) ? $lib_bower->main : array($lib_bower->main);
-
+                /* Add css & js files as specified in the "main" property */
+                $files = (is_array($lib_bower->main)) ? $lib_bower->main : array($lib_bower->main);
                 foreach($files as $file) {
                     if (substr($file, strlen($file) - 3) == "css") {
                         $css[] = $lib . "/" . $file;
