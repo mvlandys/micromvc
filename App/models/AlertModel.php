@@ -1,6 +1,9 @@
 <?php
-    namespace Matheos\App;
+namespace Matheos\App;
 
-    class AlertModel extends \Matheos\MicroMVC\Model {
+use Matheos\MicroMVC\Model;
 
-    }
+class AlertModel extends Model
+{
+
+}
