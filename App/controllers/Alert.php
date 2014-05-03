@@ -15,9 +15,9 @@ class Alert extends Controller
     public function cBox_Alert($alert, $type, $refresh = null)
     {
         $viewData = array(
-            "Alert"   => $alert,
-            "Type"    => $type,
-            "Refresh" => $refresh
+            "alert-msg"  => $alert,
+            "alert-type" => $type,
+            "refresh"    => $refresh
         );
 
         $this->view->renderView("cBox_alert.php", $viewData);
@@ -32,8 +32,8 @@ class Alert extends Controller
     public function page_Alert($alert, $type)
     {
         $viewData = array(
-            "Alert" => $alert,
-            "Type"  => $type
+            "alert-msg"  => $alert,
+            "alert-type" => $type
         );
 
         $this->view->renderView("page_alert.php", $viewData);

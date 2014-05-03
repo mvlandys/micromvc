@@ -1,3 +1,3 @@
-<div class="alert <?=$viewData["Type"]?>">
-    <?=$viewData["Alert"]?>
+<div class="alert <?=$viewData["alert-type"]?>">
+    <?=$viewData["alert-msg"]?>
 </div>

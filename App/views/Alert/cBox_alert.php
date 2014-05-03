@@ -1,4 +1,4 @@
-<div class="alert <?=$viewData["Type"]?>">
-    <?=$viewData["Alert"]?><br /><br/>
-    <center><a class="btn" onclick="cBox_Close(<?=$viewData["Refresh"]?>)">OK</a></center>
+<div class="alert <?=$viewData["alert-type"]?>">
+    <?=$viewData["alert-msg"]?><br /><br/>
+    <center><a class="btn" onclick="cBox_Close(<?=$viewData["refresh"]?>)">OK</a></center>
 </div>
