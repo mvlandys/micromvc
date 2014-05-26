@@ -8,11 +8,12 @@ class Model
     public function __get($var)
     {
         if ($var == "db") {
-            if (!isset($this->dbORM)) {
-                $DBConf = $this->AppConfig->config->DB;
-                if ($DBConf->enabled == "true") {
-                    $database    = \Matheos\MicroMVC\Database::getInstance();
-                    $this->dbORM =  \Matheos\MicroMVC\Database::$db;
+            if (! isset($this->dbORM)) {
+                $appCfg = AppConfig::getInstance();
+                $dbCfg  = $appCfg->config->DB;
+                if ($dbCfg->enabled == "true") {
+                    $database    = Database::getInstance();
+                    $this->dbORM = Database::$db;
                 } else {
                     throw new \Exception("Please enable DB in config.json");
                 }
